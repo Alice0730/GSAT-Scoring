@@ -1742,6 +1742,16 @@ def raw_to_accuracy(
     )
 
 
+    # Ensure model score columns are floating point before assigning
+    # normalized percentage values. This avoids pandas dtype warnings
+    # without changing any analytical calculation.
+    annual_accuracy[
+        MODELS
+    ] = annual_accuracy[
+        MODELS
+    ].astype(float)
+
+
     for row_index in annual_accuracy.index:
 
 
